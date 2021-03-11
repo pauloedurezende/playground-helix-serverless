@@ -1,10 +1,53 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
+  "projects": {
+    "koa": {
+      "root": "apps/koa",
+      "sourceRoot": "apps/koa/src",
+      "projectType": "application",
+      "prefix": "koa",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/koa",
+            "main": "apps/koa/src/main.ts",
+            "tsConfig": "apps/koa/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "koa:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/koa/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/koa"],
+          "options": {
+            "jestConfig": "apps/koa/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/node"
+  },
+  "defaultProject": "koa"
 }
