@@ -1,0 +1,47 @@
+service: playground-koa
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: ${self:custom.REGION}
+  stage: ${self:custom.STAGE}
+  runtime: nodejs14.x
+  versionFunctions: false
+  lambdaHashingVersion: 20201221
+
+  httpApi:
+    cors:
+      allowedOrigins:
+        - '*'
+      allowedMethods:
+        - GET
+        - POST
+        - HEAD
+      allowedHeaders:
+        - Accept
+        - Authorization
+        - Content-Type
+
+  environment:
+    REGION: ${self:custom.REGION}
+    STAGE: ${self:custom.STAGE}
+
+functions:
+  endpoint:
+    handler: handler.start
+    events:
+      - httpApi:
+          path: '*'
+          method: '*'
+
+plugins:
+  - serverless-webpack
+
+custom:
+  REGION: ${opt:region, 'us-east-1'}
+  STAGE: ${opt:stage, 'dev'}
+
+  webpack:
+    includeModules: false
+    packager: yarn
+    webpackConfig: ../../webpack.config.js
