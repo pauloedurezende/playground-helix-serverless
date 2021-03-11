@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@playground/logger": ["libs/logger/src/index.ts"]
+      "@playground/logger": ["libs/logger/src/index.ts"],
+      "@playground/schema": ["libs/schema/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
