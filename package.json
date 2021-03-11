@@ -27,6 +27,7 @@
   },
   "private": true,
   "dependencies": {
+    "graphql": "15.5.0",
     "winston": "3.3.3"
   },
   "devDependencies": {
