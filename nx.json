@@ -15,5 +15,5 @@
       "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
-  "projects": { "koa": { "tags": [] } }
+  "projects": { "koa": { "tags": [] }, "logger": { "tags": [] } }
 }

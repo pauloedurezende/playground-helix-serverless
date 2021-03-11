@@ -9,7 +9,9 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/koa",
             "main": "apps/koa/src/main.ts",
@@ -32,14 +34,43 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/koa/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/koa/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/koa"],
+          "outputs": [
+            "coverage/apps/koa"
+          ],
           "options": {
             "jestConfig": "apps/koa/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "logger": {
+      "root": "libs/logger",
+      "sourceRoot": "libs/logger/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/logger/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/logger"
+          ],
+          "options": {
+            "jestConfig": "libs/logger/jest.config.js",
             "passWithNoTests": true
           }
         }
